@@ -5,3 +5,4 @@ src/EngineConfig.h
 bin/Main
 lib/**
 CMakeFiles/**
+libEngine.a
