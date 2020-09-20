@@ -27,7 +27,10 @@ target_link_libraries(Engine glfw)
 add_subdirectory(lib/gl3w)
 target_link_libraries(Engine gl3w)
 
+add_library(Shape src/shapes/Shape.cpp)
+target_link_libraries(Engine Shape)
+
 target_include_directories(Main PUBLIC
 				bin
-				src/Engine)
+				src/engine)
 

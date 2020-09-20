@@ -4,12 +4,35 @@
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 
-Engine::Engine() {
+#include "../shapes/Shape.h"
+
+Engine::Engine() {}
+
+void Engine::SetWindowDimensions(int width, int height) {
   glfwInit();
 
-  window = glfwCreateWindow(800, 600, "Engine", NULL, NULL);
+  window = glfwCreateWindow(width, height, "Engine", NULL, NULL);
 
   glfwMakeContextCurrent(window);
+}
+
+void Engine::DrawShape(Shape*) {
+  std::cout << "Drawing mad shapes\n";
+}
+
+void Engine::UpdateScreen() {
+  static const float black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
+  static const float red[] = { 1.0f, 0.0f, 0.0f, 0.0f };
+
+  glClearBufferfv(GL_COLOR, 0, black);
+
+  glBindVertexArray(VAOs[Triangles]);
+  glDrawArrays(GL_TRIANGLES, 0, NumVertices);
+
+  glFlush();
+}
+
+void Engine::Run() {
   gl3wInit();
 
   glGenVertexArrays(NumVAOs, VAOs);
@@ -35,27 +58,7 @@ Engine::Engine() {
 
   glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, 0, 0);
   glEnableVertexAttribArray(vPosition);
-}
 
-void Engine::SetWindowDimensions() {}
-
-void Engine::SetCamera() {}
-
-void Engine::DrawShape() {}
-
-void Engine::UpdateScreen() {
-  static const float black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
-  static const float red[] = { 1.0f, 0.0f, 0.0f, 0.0f };
-
-  glClearBufferfv(GL_COLOR, 0, black);
-
-  glBindVertexArray(VAOs[Triangles]);
-  glDrawArrays(GL_TRIANGLES, 0, NumVertices);
-
-  glFlush();
-}
-
-void Engine::Run() {
   while (!glfwWindowShouldClose(window)) {
     UpdateScreen();
     glfwSwapBuffers(window);

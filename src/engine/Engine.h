@@ -1,6 +1,8 @@
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 
+#include "../shapes/Shape.h"
+
 typedef struct {
   GLenum type;
   const char* filename;
@@ -10,9 +12,8 @@ typedef struct {
 class Engine {
  public:
   Engine();
-  void SetWindowDimensions();
-  void SetCamera();
-  void DrawShape();
+  void SetWindowDimensions(int width, int height);
+  void DrawShape(Shape*);
   void UpdateScreen();
   void Run();
 
