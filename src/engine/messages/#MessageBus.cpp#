@@ -1,0 +1,10 @@
+#include "MessageBus.h"
+#include "Message.h"
+
+MessageBus::MessageBus() {
+  
+}
+
+void MessageBus::postMessage(Message* message) {
+  message->log();
+}

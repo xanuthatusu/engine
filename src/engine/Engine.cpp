@@ -5,8 +5,14 @@
 #include <GLFW/glfw3.h>
 
 #include "../shapes/Shape.h"
+#include "messages/MessageBus.h"
 
-Engine::Engine() {}
+Engine::Engine() {
+  std::string message = "hello, world";
+  Message* msg = new Message(LOG, message);
+
+  msgBus->postMessage(msg);
+}
 
 void Engine::SetWindowDimensions(int width, int height) {
   glfwInit();
@@ -17,7 +23,6 @@ void Engine::SetWindowDimensions(int width, int height) {
 }
 
 void Engine::DrawShape(Shape*) {
-  std::cout << "Drawing mad shapes\n";
 }
 
 void Engine::UpdateScreen() {
@@ -30,6 +35,12 @@ void Engine::UpdateScreen() {
   glDrawArrays(GL_TRIANGLES, 0, NumVertices);
 
   glFlush();
+}
+
+void Engine::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+  if (key == GLFW_KEY_E && action == GLFW_PRESS) {
+    std::cout << "EEEE\n";
+  }
 }
 
 void Engine::Run() {
@@ -58,6 +69,8 @@ void Engine::Run() {
 
   glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, 0, 0);
   glEnableVertexAttribArray(vPosition);
+
+  glfwSetKeyCallback(window, keyCallback);
 
   while (!glfwWindowShouldClose(window)) {
     UpdateScreen();

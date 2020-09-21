@@ -30,6 +30,12 @@ target_link_libraries(Engine gl3w)
 add_library(Shape src/shapes/Shape.cpp)
 target_link_libraries(Engine Shape)
 
+add_library(Message src/engine/messages/Message.cpp)
+target_link_libraries(Engine Message)
+
+add_library(MessageBus src/engine/messages/MessageBus.cpp)
+target_link_libraries(Engine MessageBus)
+
 target_include_directories(Main PUBLIC
 				bin
 				src/engine)

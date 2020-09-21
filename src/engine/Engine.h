@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include "../shapes/Shape.h"
+#include "messages/MessageBus.h"
 
 typedef struct {
   GLenum type;
@@ -27,8 +28,12 @@ class Engine {
   
   const GLuint NumVertices = 6;
 
+  GLFWwindow* window;
+
   static const GLchar* ReadShader(const char* filename);
   GLuint LoadShaders(ShaderInfo* shaders);
 
-  GLFWwindow* window;
+  static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+  MessageBus* msgBus;
 };
