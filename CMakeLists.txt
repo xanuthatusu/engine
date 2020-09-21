@@ -30,6 +30,9 @@ target_link_libraries(Engine gl3w)
 add_library(Shape src/shapes/Shape.cpp)
 target_link_libraries(Engine Shape)
 
+add_library(Console src/engine/systems/console/Console.cpp)
+target_link_libraries(Engine Console)
+
 add_library(Message src/engine/messages/Message.cpp)
 target_link_libraries(Engine Message)
 

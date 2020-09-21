@@ -3,9 +3,13 @@
 
 #include "Message.h"
 
+class System;
 class MessageBus {
  public:
+  MessageBus(System** systems);
   void postMessage(Message* message);
+ private:
+  System** systems;
 };
 
 #endif // __MESSAGE_BUS__

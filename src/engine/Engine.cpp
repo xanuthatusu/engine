@@ -7,11 +7,23 @@
 #include "../shapes/Shape.h"
 #include "messages/MessageBus.h"
 
-Engine::Engine() {
-  std::string message = "hello, world";
-  Message* msg = new Message(LOG, message);
+#include "systems/console/Console.h"
 
-  msgBus->postMessage(msg);
+Engine::Engine() {
+  Console console;
+  System* systems[] = {&console};
+
+  MessageBus msgBus(systems);
+
+  for (int i = 0; i < 1; i++) {
+    systems[i]->setMessageBus(&msgBus);
+    systems[i]->Run();
+  }
+  
+  // std::string message = "hello, world";
+  // Message msg(LOG, message);
+
+  // msgBus->postMessage(&msg);
 }
 
 void Engine::SetWindowDimensions(int width, int height) {

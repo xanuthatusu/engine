@@ -1,10 +1,13 @@
 #include "Message.h"
 
 #include <iostream>
-#include <string>
 
-Message::Message(MessageType t, std::string m) {
+Message::Message(MessageType t, const char* m) {
   type = t;
+  message = m;
+}
+
+void Message::setMessage(const char* m) {
   message = m;
 }
 

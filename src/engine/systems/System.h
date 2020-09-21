@@ -1,11 +1,28 @@
-#include "messages/MessageBus.h"
+#ifndef __SYSTEM__
+#define __SYSTEM__
+
+#include "../messages/MessageBus.h"
+
+#include <iostream>
 
 class System {
  public:
+  MessageBus* messageBus;
+
+  void setMessageBus(MessageBus* bus) {
+    messageBus = bus;
+  }
+
   void handleMessage(Message* message) {
-    switch (message->type) {
+    switch (message->getType()) {
+    case LOG:
+      message->log();
     }
   }
- private:
-  MessageBus* messageBus;
-}
+
+  virtual void Run() { std::cout << "Running system.\n"; };
+
+  virtual const char* Name() { return "generic system"; };
+};
+
+#endif // __SYSTEM__

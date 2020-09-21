@@ -7,11 +7,13 @@ enum MessageType {LOG};
 
 class Message {
  public:
-  Message(MessageType type, std::string message);
+  Message(MessageType type, const char* message);
+  MessageType getType() const { return type; };
+  void setMessage(const char* message);
   void log();
  private:
   MessageType type;
-  std::string message;
+  const char* message;
 };
 
 #endif // __MESSAGE__
