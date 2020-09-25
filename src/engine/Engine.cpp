@@ -11,32 +11,35 @@
 #include "messages/MessageBus.h"
 
 #include "systems/console/Console.h"
+#include "systems/render/Render.h"
 
 Engine::Engine() {
   Console console;
-  System* systems[] = {&console};
+  Render render;
+  std::vector<System*> systems = {
+    &console,
+    &render,
+  };
 
   MessageBus msgBus(systems);
 
   std::vector<std::future<void>> systemFutures;
 
-  int systemCount = sizeof(systems)/sizeof(systems[0]);
-  std::cout << systemCount << " system(s)\n";
-  for (int i = 0; i < systemCount; i++) {
-    systems[i]->setMessageBus(&msgBus);
+  std::cout << systems.size() << " systems\n";
+  std::vector<System*>::iterator systemIt;
+  for (systemIt = systems.begin(); systemIt != systems.end(); systemIt++) {
+    System* system = *systemIt;
+    system->setMessageBus(&msgBus);
 
-    systemFutures.push_back(std::async(&System::Run, systems[i]));
+    systemFutures.push_back(std::async(&System::Run, system));
   }
 
-  std::cout << "running engine thread!\n";
+  Message msg(DRAW_SHAPE, "square");
+  msgBus.postMessage(&msg);
 
-  std::this_thread::sleep_for(std::chrono::seconds(10));
-
-  std::cout << "running engine thread #2!\n";
-
-  std::vector<std::future<void>>::iterator it;
-  for (it = systemFutures.begin(); it != systemFutures.end(); ++it) {
-    it->wait();
+  std::vector<std::future<void>>::iterator futureIt;
+  for (futureIt = systemFutures.begin(); futureIt != systemFutures.end(); futureIt++) {
+    futureIt->wait();
   }
 }
 

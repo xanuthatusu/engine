@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum MessageType {LOG};
+enum MessageType {LOG, DRAW_SHAPE};
 
 class Message {
  public:

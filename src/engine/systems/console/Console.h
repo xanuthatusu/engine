@@ -2,7 +2,9 @@
 
 class Console: public System {
  public:
+  void handleMessage(Message* message);
   void Run();
-  void writeMessage(const char* message);
   const char* Name();
+
+  void writeMessage(const char* message);
 };

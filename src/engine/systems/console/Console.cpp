@@ -1,12 +1,14 @@
 #include "Console.h"
-#include "../../messages/Message.h"
 
 #include <thread>
 #include <chrono>
 
-void Console::writeMessage(const char* message) {
-  Message msg(LOG, message);
-  messageBus->postMessage(&msg);
+void Console::handleMessage(Message* message) {
+  // this is the same as the base class...for now
+  switch (message->getType()) {
+  case LOG:
+    message->log();
+  }
 }
 
 void Console::Run() {
@@ -20,3 +22,13 @@ void Console::Run() {
 const char* Console::Name() {
   return "console";
 }
+
+void Console::writeMessage(const char* message) {
+  std::string m = "console(";
+  m += message;
+  m += ")";
+
+  Message msg(LOG, m.c_str());
+  messageBus->postMessage(&msg);
+}
+

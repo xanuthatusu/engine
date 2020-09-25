@@ -33,6 +33,9 @@ target_link_libraries(Engine Shape)
 add_library(Console src/engine/systems/console/Console.cpp)
 target_link_libraries(Engine Console)
 
+add_library(Render src/engine/systems/render/Render.cpp)
+target_link_libraries(Engine Render)
+
 add_library(Message src/engine/messages/Message.cpp)
 target_link_libraries(Engine Message)
 

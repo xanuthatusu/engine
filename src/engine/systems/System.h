@@ -13,7 +13,7 @@ class System {
     messageBus = bus;
   }
 
-  void handleMessage(Message* message) {
+  virtual void handleMessage(Message* message) {
     switch (message->getType()) {
     case LOG:
       message->log();
@@ -21,7 +21,6 @@ class System {
   }
 
   virtual void Run() { std::cout << "Running system.\n"; };
-
   virtual const char* Name() { return "generic system"; };
 };
 
