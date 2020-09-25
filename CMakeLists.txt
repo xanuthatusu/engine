@@ -21,12 +21,6 @@ add_executable(Main src/main.cpp)
 add_library(Engine src/engine/Engine.cpp)
 target_link_libraries(Main PUBLIC Engine)
 
-add_subdirectory(lib/glfw)
-target_link_libraries(Engine glfw)
-
-add_subdirectory(lib/gl3w)
-target_link_libraries(Engine gl3w)
-
 add_library(Shape src/shapes/Shape.cpp)
 target_link_libraries(Engine Shape)
 
@@ -35,6 +29,15 @@ target_link_libraries(Engine Console)
 
 add_library(Render src/engine/systems/render/Render.cpp)
 target_link_libraries(Engine Render)
+
+add_library(Framework src/engine/framework/Framework.cpp)
+target_link_libraries(Engine Framework)
+
+add_subdirectory(lib/glfw)
+target_link_libraries(Framework glfw)
+
+add_subdirectory(lib/gl3w)
+target_link_libraries(Framework gl3w)
 
 add_library(Message src/engine/messages/Message.cpp)
 target_link_libraries(Engine Message)

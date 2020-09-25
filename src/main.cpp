@@ -14,7 +14,7 @@ int main() {
   triOne->SetVertices(3, vertices);
 
   Engine test;
-  test.SetWindowDimensions(800, 600);
+  // test.SetWindowDimensions(800, 600);
   test.DrawShape(triOne);
   test.Run();
 
