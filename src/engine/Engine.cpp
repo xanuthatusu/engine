@@ -1,5 +1,8 @@
 #include "Engine.h"
+#include <chrono>
+#include <future>
 #include <iostream>
+#include <vector>
 
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
@@ -15,15 +18,26 @@ Engine::Engine() {
 
   MessageBus msgBus(systems);
 
-  for (int i = 0; i < 1; i++) {
-    systems[i]->setMessageBus(&msgBus);
-    systems[i]->Run();
-  }
-  
-  // std::string message = "hello, world";
-  // Message msg(LOG, message);
+  std::vector<std::future<void>> systemFutures;
 
-  // msgBus->postMessage(&msg);
+  int systemCount = sizeof(systems)/sizeof(systems[0]);
+  std::cout << systemCount << " system(s)\n";
+  for (int i = 0; i < systemCount; i++) {
+    systems[i]->setMessageBus(&msgBus);
+
+    systemFutures.push_back(std::async(&System::Run, systems[i]));
+  }
+
+  std::cout << "running engine thread!\n";
+
+  std::this_thread::sleep_for(std::chrono::seconds(10));
+
+  std::cout << "running engine thread #2!\n";
+
+  std::vector<std::future<void>>::iterator it;
+  for (it = systemFutures.begin(); it != systemFutures.end(); ++it) {
+    it->wait();
+  }
 }
 
 void Engine::SetWindowDimensions(int width, int height) {
