@@ -1,8 +1,7 @@
 #ifndef __FRAMEWORK__
 #define __FRAMEWORK__
 
-#include <GL/gl3w.h>
-#include <GLFW/glfw3.h>
+#include "draw/Draw.h"
 
 typedef struct {
   GLenum type;
@@ -13,25 +12,17 @@ typedef struct {
 class Framework {
  public:
   void Start();
-  void UpdateScreen();
   void SetWindowDimensions(int width, int height);
 
  private:
-  enum Buffer_IDs { ArrayBuffer, NumBuffers };
-  enum Attrib_IDs { vPosition = 0 };
-  enum VAO_IDs { Triangles, NumVAOs };
-
-  GLuint Buffers[NumBuffers];
-  GLuint VAOs[NumVAOs];
-  
-  const GLuint NumVertices = 6;
-
+  Draw* draw;
   GLFWwindow* window;
 
   static const GLchar* ReadShader(const char* filename);
   GLuint LoadShaders(ShaderInfo* shaders);
 
   static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+  void keyHandler(int key, int scancode, int action, int mods);
 };
 
 #endif // __FRAMEWORK__

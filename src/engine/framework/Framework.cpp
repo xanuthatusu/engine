@@ -6,17 +6,7 @@
 void Framework::Start() {
   SetWindowDimensions(800, 600);
 
-  glGenVertexArrays(NumVAOs, VAOs);
-  glBindVertexArray(VAOs[Triangles]);
-
-  GLfloat  vertices[NumVertices][2] = {
-    { -0.90f, -0.90f }, {  0.85f, -0.90f }, { -0.90f,  0.85f },
-    {  0.90f, -0.85f }, {  0.90f,  0.90f }, { -0.85f,  0.90f },
-  };
-
-  glGenBuffers(NumBuffers, Buffers);
-  glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  Draw* draw = new Draw();
 
   ShaderInfo shaders[] = {
     {GL_VERTEX_SHADER, "media/shaders/triangles.vert"},
@@ -27,13 +17,10 @@ void Framework::Start() {
   GLuint program = LoadShaders(shaders);
   glUseProgram(program);
 
-  glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, 0, 0);
-  glEnableVertexAttribArray(vPosition);
-
   glfwSetKeyCallback(window, keyCallback);
 
   while (!glfwWindowShouldClose(window)) {
-    UpdateScreen();
+    draw->UpdateScreen();
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
@@ -129,24 +116,6 @@ GLuint Framework::LoadShaders(ShaderInfo* shaders) {
   return program;
 }
 
-void Framework::UpdateScreen() {
-  static const float black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
-  static const float red[] = { 1.0f, 0.0f, 0.0f, 0.0f };
-
-  glClearBufferfv(GL_COLOR, 0, black);
-
-  glBindVertexArray(VAOs[Triangles]);
-  glDrawArrays(GL_TRIANGLES, 0, NumVertices);
-
-  glFlush();
-}
-
-void Framework::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-  if (key == GLFW_KEY_E && action == GLFW_PRESS) {
-    std::cout << "EEEE\n";
-  }
-}
-
 void Framework::SetWindowDimensions(int width, int height) {
   glfwInit();
 
@@ -154,5 +123,28 @@ void Framework::SetWindowDimensions(int width, int height) {
 
   glfwMakeContextCurrent(window);
 
+  // set this as the window user pointer so that we can access member data
+  // in the static member function keyCallback
+  glfwSetWindowUserPointer(window, this);
+
   gl3wInit();
+}
+
+void Framework::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+  Framework* handler = reinterpret_cast<Framework*>(glfwGetWindowUserPointer(window));
+  handler->keyHandler(key, scancode, action, mods);
+}
+
+void Framework::keyHandler(int key, int scancode, int action, int mods) {
+  if (key == GLFW_KEY_E && action == GLFW_PRESS) {
+    std::cout << "EEEE\n";
+
+    // GLfloat vertices[NumVertices][2] = {
+    // 	{ -0.70f, -0.90f }, {  0.85f, -0.90f }, { -0.90f,  0.85f },
+    // 	{  0.90f, -0.85f }, {  0.90f,  0.90f }, { -0.85f,  0.90f },
+    // };
+
+    // glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  }
 }

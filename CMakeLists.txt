@@ -24,6 +24,12 @@ target_link_libraries(Main PUBLIC Engine)
 add_library(Shape src/shapes/Shape.cpp)
 target_link_libraries(Engine Shape)
 
+add_subdirectory(lib/glfw)
+target_link_libraries(Shape glfw)
+
+add_subdirectory(lib/gl3w)
+target_link_libraries(Shape gl3w)
+
 add_library(Console src/engine/systems/console/Console.cpp)
 target_link_libraries(Engine Console)
 
@@ -33,11 +39,8 @@ target_link_libraries(Engine Render)
 add_library(Framework src/engine/framework/Framework.cpp)
 target_link_libraries(Engine Framework)
 
-add_subdirectory(lib/glfw)
-target_link_libraries(Framework glfw)
-
-add_subdirectory(lib/gl3w)
-target_link_libraries(Framework gl3w)
+add_library(Draw src/engine/framework/draw/Draw.cpp)
+target_link_libraries(Framework Draw)
 
 add_library(Message src/engine/messages/Message.cpp)
 target_link_libraries(Engine Message)
@@ -47,5 +50,6 @@ target_link_libraries(Engine MessageBus)
 
 target_include_directories(Main PUBLIC
 				bin
+				lib
 				src/engine)
 

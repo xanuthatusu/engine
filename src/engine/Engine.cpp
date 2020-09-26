@@ -23,9 +23,6 @@ Engine::Engine() {
   std::cout << "finished initializing engine\n";
 }
 
-void Engine::DrawShape(Shape*) {
-}
-
 void Engine::Run() {
   auto frameworkFuture = std::async(&Framework::Start, framework);
 

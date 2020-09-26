@@ -2,15 +2,18 @@
 #define __SYSTEM__
 
 #include "../messages/MessageBus.h"
+#include "../framework/Framework.h"
 
 #include <iostream>
 
 class System {
  public:
   MessageBus* messageBus;
+  Framework* framework;
 
-  void setMessageBus(MessageBus* bus) {
+  void configure(MessageBus* bus, Framework* frame) {
     messageBus = bus;
+    framework = frame;
   }
 
   virtual void handleMessage(Message* message) {
