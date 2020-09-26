@@ -7,6 +7,7 @@ class Draw {
   void AddShape(Shape* shape);
   void Triangle();
   void UpdateScreen();
+  std::vector<GLfloat> getVertices();
 
  private:
   std::vector<Shape*> shapes;

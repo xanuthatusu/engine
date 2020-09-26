@@ -9,7 +9,7 @@
 void Framework::Start() {
   SetWindowDimensions(800, 600);
 
-  Draw* draw = new Draw();
+  Draw draw;
 
   ShaderInfo shaders[] = {
     {GL_VERTEX_SHADER, "media/shaders/triangles.vert"},
@@ -23,7 +23,7 @@ void Framework::Start() {
   glfwSetKeyCallback(window, keyCallback);
 
   while (!glfwWindowShouldClose(window)) {
-    draw->UpdateScreen();
+    draw.UpdateScreen();
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
