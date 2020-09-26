@@ -9,7 +9,7 @@ cmake --build .
 ## To Run
 ```bash
 cd bin/
-./Main
+./app
 ```
 
 ### Notes
