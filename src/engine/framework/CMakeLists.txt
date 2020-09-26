@@ -9,5 +9,6 @@ target_include_directories(draw PUBLIC ../../../include)
 
 target_link_libraries(draw glfw)
 target_link_libraries(draw gl3w)
+target_link_libraries(draw shape)
 
 target_link_libraries(framework draw)

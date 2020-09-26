@@ -4,8 +4,12 @@
 #include <engine/framework/Draw.h>
 
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 void Draw::AddShape(Shape* shape) {
+  std::cout << "adding shape!\n";
+  
   shapes.push_back(shape);
 }
 
@@ -13,45 +17,45 @@ void Draw::UpdateScreen() {
   static const float black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
   static const float red[] = { 1.0f, 0.0f, 0.0f, 0.0f };
 
-  std::vector<GLfloat> vertices = getVertices();
-
   glClearBufferfv(GL_COLOR, 0, black);
 
+  updateBuffer();
   glBindVertexArray(VAOs[Triangles]);
-  glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 2);
+  glDrawArrays(GL_TRIANGLES, 0, 6);
 
   glFlush();
+}
+
+void Draw::updateBuffer() {
+  glBindVertexArray(VAOs[Triangles]);
+
+  std::vector<GLfloat> vertices = getVertices();
+
+  glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
+  glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), vertices.data(), GL_DYNAMIC_DRAW);
+
+  glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 2, 0);
+  glEnableVertexAttribArray(vPosition);
 }
 
 Draw::Draw() {
   glGenVertexArrays(NumVAOs, VAOs);
   glBindVertexArray(VAOs[Triangles]);
 
-  std::vector<GLfloat> vertices = getVertices();
-
   glGenBuffers(NumBuffers, Buffers);
-  glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
-  glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), vertices.data(), GL_STATIC_DRAW);
 
-  glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 2, 0);
-  glEnableVertexAttribArray(vPosition);
+  updateBuffer();
 }
 
 std::vector<GLfloat> Draw::getVertices() {
-  std::vector<GLfloat> vertices;
+  std::vector<GLfloat> glVerts;
+  
+  std::vector<Shape*>::iterator shapeIt;
+  for (shapeIt = shapes.begin(); shapeIt != shapes.end(); shapeIt++) {
+    Shape* shape = *shapeIt;
+    std::vector<GLfloat> v = shape->GetVertices();
+    glVerts.insert(glVerts.end(), v.begin(), v.end());
+  }
 
-  GLfloat v = 0.5f;
-  vertices.push_back(v);
-  v = 0.1f;
-  vertices.push_back(v);
-  v = -0.1f;
-  vertices.push_back(v);
-  v = -0.7f;
-  vertices.push_back(v);
-  v = -0.5f;
-  vertices.push_back(v);
-  v = 0.3f;
-  vertices.push_back(v);
-
-  return vertices;
+  return glVerts;
 }

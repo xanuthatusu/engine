@@ -8,13 +8,25 @@ void Render::handleMessage(Message* message) {
   }
 }
 
-void Render::Run() {}
+void Render::Run() {
+}
 
 const char* Render::Name() {
   return "render";
 }
 
 void Render::drawShape(Message* message) {
-  // TODO: we'll call framework functions from here to draw the shape defined by message
+  // TODO: build shape object using data from message
+
+  std::vector<Vertex> vertVect;
+  Vertex v = { 0.5f, 0.4f };
+  vertVect.push_back(v);
+  v = { -0.1f, -0.7f };
+  vertVect.push_back(v);
+  v = { -0.5f, 0.3f };
+  vertVect.push_back(v);
+  Shape* t = new Shape(TRIANGLE, vertVect);
+
+  framework->GetDraw()->AddShape(t);
 }
 

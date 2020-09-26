@@ -37,6 +37,7 @@ void Engine::Run() {
     systemFutures.push_back(std::async(&System::Run, system));
   }
 
+  std::this_thread::sleep_for(std::chrono::seconds(1));
   Message msg(DRAW_SHAPE, "rect");
   msgBus->postMessage(&msg);
 

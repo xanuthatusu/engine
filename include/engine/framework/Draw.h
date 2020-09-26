@@ -20,4 +20,6 @@ class Draw {
   GLuint VAOs[NumVAOs];
   
   const GLuint NumVertices = 6;
+
+  void updateBuffer();
 };

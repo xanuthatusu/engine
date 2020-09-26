@@ -14,6 +14,8 @@ class Framework {
   void Start();
   void SetWindowDimensions(int width, int height);
 
+  Draw* GetDraw() { return draw; };
+
  private:
   Draw* draw;
   GLFWwindow* window;
