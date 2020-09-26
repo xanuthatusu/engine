@@ -1,7 +1,8 @@
-#include "MessageBus.h"
-#include "Message.h"
+#include <GL/gl3w.h>
+#include <GLFW/glfw3.h>
 
-#include "../systems/System.h"
+#include <engine/message/MessageBus.h>
+#include <engine/System.h>
 
 MessageBus::MessageBus(std::vector<System*> s) {
   systems = s;

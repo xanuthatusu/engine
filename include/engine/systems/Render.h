@@ -1,7 +1,7 @@
 #ifndef __RENDER__
 #define __RENDER__
 
-#include "../System.h"
+#include <engine/System.h>
 
 class Render: public System {
  public:

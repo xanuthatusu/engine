@@ -1,15 +1,15 @@
-#include "Engine.h"
+#include <engine/Engine.h>
 #include <chrono>
 #include <future>
 #include <iostream>
 #include <vector>
 
-#include "../shapes/Shape.h"
-#include "messages/MessageBus.h"
-#include "framework/Framework.h"
+#include <shape/Shape.h>
+#include <engine/message/MessageBus.h>
+#include <engine/framework/Framework.h>
 
-#include "systems/console/Console.h"
-#include "systems/render/Render.h"
+#include <engine/systems/Console.h>
+#include <engine/systems/Render.h>
 
 Engine::Engine() {
   systems = std::vector<System*>({
@@ -32,7 +32,7 @@ void Engine::Run() {
   std::vector<System*>::iterator systemIt;
   for (systemIt = systems.begin(); systemIt != systems.end(); systemIt++) {
     System* system = *systemIt;
-    system->setMessageBus(msgBus);
+    system->configure(msgBus, framework);
 
     systemFutures.push_back(std::async(&System::Run, system));
   }

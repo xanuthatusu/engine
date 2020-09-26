@@ -1,4 +1,7 @@
-#include "Framework.h"
+#include <GL/gl3w.h>
+#include <GLFW/glfw3.h>
+
+#include <engine/framework/Framework.h>
 
 #include <cstdio>
 #include <iostream>

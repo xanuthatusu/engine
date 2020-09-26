@@ -1,5 +1,5 @@
-#include "EngineConfig.h"
-#include "engine/Engine.h"
+#include "AppConfig.h"
+#include <engine/Engine.h>
 #include <iostream>
 
 int main() {

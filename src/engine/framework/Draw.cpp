@@ -1,4 +1,7 @@
-#include "Draw.h"
+#include <GL/gl3w.h>
+#include <GLFW/glfw3.h>
+
+#include <engine/framework/Draw.h>
 
 void Draw::AddShape(Shape* shape) {
   shapes.push_back(shape);

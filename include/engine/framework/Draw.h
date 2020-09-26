@@ -1,4 +1,4 @@
-#include "../../../shapes/Shape.h"
+#include <shape/Shape.h>
 #include <vector>
 
 class Draw {

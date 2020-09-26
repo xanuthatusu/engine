@@ -1,7 +1,7 @@
 #ifndef __MESSAGE_BUS__
 #define __MESSAGE_BUS__
 
-#include "Message.h"
+#include <engine/message/Message.h>
 #include <vector>
 
 class System;

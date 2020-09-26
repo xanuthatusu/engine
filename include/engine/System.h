@@ -1,8 +1,11 @@
 #ifndef __SYSTEM__
 #define __SYSTEM__
 
-#include "../messages/MessageBus.h"
-#include "../framework/Framework.h"
+#include <GL/gl3w.h>
+#include <GLFW/glfw3.h>
+
+#include <engine/message/MessageBus.h>
+#include <engine/framework/Framework.h>
 
 #include <iostream>
 
