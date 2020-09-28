@@ -6,11 +6,13 @@
 #include <cstdio>
 #include <iostream>
 
+namespace Framework {
+
 void Framework::Start() {
   SetWindowDimensions(800, 600);
 
   draw = new Draw();
-  // draw.AddShape(NULL);
+  input = new Input(window, inputSystem);
 
   ShaderInfo shaders[] = {
     {GL_VERTEX_SHADER, "media/shaders/triangles.vert"},
@@ -20,8 +22,6 @@ void Framework::Start() {
 
   GLuint program = LoadShaders(shaders);
   glUseProgram(program);
-
-  glfwSetKeyCallback(window, keyCallback);
 
   while (!glfwWindowShouldClose(window)) {
     draw->UpdateScreen();
@@ -134,21 +134,4 @@ void Framework::SetWindowDimensions(int width, int height) {
   gl3wInit();
 }
 
-void Framework::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-  Framework* handler = reinterpret_cast<Framework*>(glfwGetWindowUserPointer(window));
-  handler->keyHandler(key, scancode, action, mods);
-}
-
-void Framework::keyHandler(int key, int scancode, int action, int mods) {
-  if (key == GLFW_KEY_E && action == GLFW_PRESS) {
-    std::cout << "EEEE\n";
-
-    // GLfloat vertices[NumVertices][2] = {
-    // 	{ -0.70f, -0.90f }, {  0.85f, -0.90f }, { -0.90f,  0.85f },
-    // 	{  0.90f, -0.85f }, {  0.90f,  0.90f }, { -0.85f,  0.90f },
-    // };
-
-    // glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-  }
 }

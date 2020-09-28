@@ -1,5 +1,7 @@
 #include <engine/System.h>
 
+namespace System {
+
 class Console: public System {
  public:
   void handleMessage(Message* message);
@@ -8,3 +10,5 @@ class Console: public System {
 
   void writeMessage(const char* message);
 };
+
+}

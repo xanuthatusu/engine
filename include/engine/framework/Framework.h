@@ -2,6 +2,9 @@
 #define __FRAMEWORK__
 
 #include <engine/framework/Draw.h>
+#include <engine/framework/Input.h>
+
+namespace Framework {
 
 typedef struct {
   GLenum type;
@@ -11,20 +14,27 @@ typedef struct {
 
 class Framework {
  public:
+  Framework(System::Input* is) : inputSystem{is} {};
   void Start();
   void SetWindowDimensions(int width, int height);
 
   Draw* GetDraw() { return draw; };
+  Input* GetInput() { return input; };
 
  private:
   Draw* draw;
+  Input* input;
   GLFWwindow* window;
+
+  System::Input* inputSystem;
 
   static const GLchar* ReadShader(const char* filename);
   GLuint LoadShaders(ShaderInfo* shaders);
 
-  static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-  void keyHandler(int key, int scancode, int action, int mods);
+  // static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+  // void keyHandler(int key, int scancode, int action, int mods);
 };
+
+}
 
 #endif // __FRAMEWORK__

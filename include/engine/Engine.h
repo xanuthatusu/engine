@@ -11,7 +11,7 @@ class Engine {
   void Run();
 
  private:
-  Framework* framework;
+  Framework::Framework* framework;
   MessageBus* msgBus;
-  std::vector<System*> systems;
+  std::vector<System::System*> systems;
 };

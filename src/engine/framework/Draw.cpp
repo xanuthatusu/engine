@@ -7,6 +7,8 @@
 #include <thread>
 #include <chrono>
 
+namespace Framework {
+
 void Draw::AddShape(Shape* shape) {
   std::cout << "adding shape!\n";
   
@@ -21,7 +23,7 @@ void Draw::UpdateScreen() {
 
   updateBuffer();
   glBindVertexArray(VAOs[Triangles]);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
+  glDrawArrays(GL_TRIANGLES, 0, 3);
 
   glFlush();
 }
@@ -58,4 +60,6 @@ std::vector<GLfloat> Draw::getVertices() {
   }
 
   return glVerts;
+}
+
 }

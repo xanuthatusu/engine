@@ -4,13 +4,14 @@
 #include <engine/message/Message.h>
 #include <vector>
 
-class System;
+namespace System { class System; }
+
 class MessageBus {
  public:
-  MessageBus(std::vector<System*> systems);
+  MessageBus(std::vector<System::System*> systems);
   void postMessage(Message* message);
  private:
-  std::vector<System*> systems;
+  std::vector<System::System*> systems;
 };
 
 #endif // __MESSAGE_BUS__

@@ -3,6 +3,8 @@
 #include <thread>
 #include <chrono>
 
+namespace System {
+
 void Console::handleMessage(Message* message) {
   // this is the same as the base class...for now
   switch (message->getType()) {
@@ -32,3 +34,4 @@ void Console::writeMessage(const char* message) {
   messageBus->postMessage(&msg);
 }
 
+}

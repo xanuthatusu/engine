@@ -3,6 +3,8 @@
 
 #include <engine/System.h>
 
+namespace System {
+
 class Render: public System {
  public:
   void Run();
@@ -11,5 +13,7 @@ class Render: public System {
  private:
   void drawShape(Message* message);
 };
+
+}
 
 #endif // __RENDER__

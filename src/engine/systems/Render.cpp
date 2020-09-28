@@ -1,4 +1,9 @@
 #include <engine/systems/Render.h>
+#include <shape/Shape.h>
+
+#include <engine/framework/Framework.h>
+
+namespace System {
 
 void Render::handleMessage(Message* message) {
   switch (message->getType()) {
@@ -30,3 +35,4 @@ void Render::drawShape(Message* message) {
   framework->GetDraw()->AddShape(t);
 }
 
+}

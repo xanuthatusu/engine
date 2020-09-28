@@ -1,6 +1,8 @@
 #include <shape/Shape.h>
 #include <vector>
 
+namespace Framework {
+
 class Draw {
  public:
   Draw();
@@ -23,3 +25,5 @@ class Draw {
 
   void updateBuffer();
 };
+
+}

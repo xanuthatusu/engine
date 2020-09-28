@@ -19,8 +19,8 @@ configure_file(app/AppConfig.h.in app/AppConfig.h)
 
 add_subdirectory(lib/glfw)
 add_subdirectory(lib/gl3w)
-add_subdirectory(src)
 
+add_subdirectory(src)
 add_subdirectory(app)
 
 target_include_directories(app PUBLIC
