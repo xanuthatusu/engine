@@ -30,9 +30,6 @@ class Framework {
 
   static const GLchar* ReadShader(const char* filename);
   GLuint LoadShaders(ShaderInfo* shaders);
-
-  // static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-  // void keyHandler(int key, int scancode, int action, int mods);
 };
 
 }

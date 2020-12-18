@@ -41,8 +41,18 @@ void Engine::Run() {
   }
 
   std::this_thread::sleep_for(std::chrono::seconds(1));
-  Message msg(DRAW_SHAPE, "rect");
-  msgBus->postMessage(&msg);
+
+  std::vector<Vertex> vertVect;
+  Vertex v = { 0.7f, 0.0f };
+  vertVect.push_back(v);
+  v = { 0.7f, -0.1f };
+  vertVect.push_back(v);
+  v = { 0.6f, -0.2f };
+  vertVect.push_back(v);
+  Shape* shape = new Shape(TRIANGLE, vertVect);
+  Message* msg = new Message(DRAW_SHAPE, &shape);
+
+  msgBus->postMessage(msg);
 
   std::vector<std::future<void>>::iterator futureIt;
   for (futureIt = systemFutures.begin(); futureIt != systemFutures.end(); futureIt++) {

@@ -13,6 +13,7 @@ enum ShapeType { TRIANGLE, RECT };
 
 class Shape {
  public:
+  Shape() {};
   Shape(ShapeType t, std::vector<Vertex> v) : type{t}, vertices{v} {};
   std::vector<GLfloat> GetVertices();
 

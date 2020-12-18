@@ -44,9 +44,9 @@ A Framework will also keep track of the Input system and call its HandleEvent() 
 - GetDraw()
 - GetInput()
 
-These three major components will be provided by the engine. The final part will be the `Game Logic`. It will probably take some more time before I have a working instance of Game Logic, but all the code should be extremely abstracted.
-
 ## Game Logic
+
+Now that we have covered everything in the Engine, the final part will be the `Game Logic`. It will probably take some more time before I have a working instance of Game Logic, but all the code should be extremely abstracted.
 
 - The engine will provide a class definition for the game logic. 
 - No calls to any OpenGL specific functions. Everything will go through the Engine.

@@ -19,8 +19,10 @@ namespace Framework {
   };
 
   void Input::handleMessage(int key, int scancode, int action, int mods) {
-    Event testEvent = { KEY_PRESS, "test event action" };
-    inputSystem->handleEvent(&testEvent);
+    if (action == GLFW_PRESS) {
+      Event testEvent = { KEY_PRESS, "test event action" };
+      inputSystem->handleEvent(&testEvent);
+    }
   }
 
 }

@@ -2,18 +2,20 @@
 #define __MESSAGE__
 
 #include <string>
+#include <shape/Shape.h>
 
 enum MessageType {LOG, DRAW_SHAPE};
 
 class Message {
  public:
-  Message(MessageType type, const char* message);
+  Message(MessageType type, void* message);
   MessageType getType() const { return type; };
-  void setMessage(const char* message);
+  int GetShape(Shape* shape);
+  void SetMessage(void* message);
   void log();
  private:
   MessageType type;
-  const char* message;
+  void* message;
 };
 
 #endif // __MESSAGE__

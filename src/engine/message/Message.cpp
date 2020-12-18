@@ -2,16 +2,29 @@
 
 #include <iostream>
 
-Message::Message(MessageType t, const char* m) {
+Message::Message(MessageType t, void* m) {
   type = t;
   message = m;
 }
 
-void Message::setMessage(const char* m) {
+int Message::GetShape(Shape* shape) {
+  if (type != DRAW_SHAPE) {
+    return 0;
+  }
+
+  Shape* s = *(Shape**)message;
+  *shape = *s;
+  return 1;
+}
+
+void Message::SetMessage(void* m) {
   message = m;
 }
 
 void Message::log() {
-  std::cout << "message: " << message << std::endl;
+  if (type != LOG) { return; }
+
+  const char* s = *(const char**)message;
+  std::cout << "message: " << s << std::endl;
   std::cout << "type: " << type << std::endl;
 }

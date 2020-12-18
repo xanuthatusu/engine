@@ -23,7 +23,7 @@ class Draw {
   
   const GLuint NumVertices = 6;
 
-  void updateBuffer();
+  int updateBuffer();
 };
 
 }

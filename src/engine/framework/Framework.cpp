@@ -9,7 +9,7 @@
 namespace Framework {
 
 void Framework::Start() {
-  SetWindowDimensions(800, 600);
+  SetWindowDimensions(950, 1080);
 
   draw = new Draw();
   input = new Input(window, inputSystem);

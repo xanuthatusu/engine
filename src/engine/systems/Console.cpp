@@ -30,7 +30,9 @@ void Console::writeMessage(const char* message) {
   m += message;
   m += ")";
 
-  Message msg(LOG, m.c_str());
+  const char* cstr = m.c_str();
+
+  Message msg(LOG, &cstr);
   messageBus->postMessage(&msg);
 }
 
