@@ -4,7 +4,7 @@ target_include_directories(engine PUBLIC ../include)
 target_link_libraries(engine glfw)
 target_link_libraries(engine gl3w)
 
-add_subdirectory(shape)
+add_subdirectory(assets/shape)
 target_link_libraries(engine shape)
 
 add_subdirectory(engine/framework)

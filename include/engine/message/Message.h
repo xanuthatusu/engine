@@ -2,7 +2,7 @@
 #define __MESSAGE__
 
 #include <string>
-#include <shape/Shape.h>
+#include <assets/shape/Shape.h>
 
 enum MessageType {LOG, DRAW_SHAPE};
 

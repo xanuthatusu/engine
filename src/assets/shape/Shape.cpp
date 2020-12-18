@@ -1,4 +1,4 @@
-#include <shape/Shape.h>
+#include <assets/shape/Shape.h>
 
 std::vector<GLfloat> Shape::GetVertices() {
   std::vector<GLfloat> glVerts;

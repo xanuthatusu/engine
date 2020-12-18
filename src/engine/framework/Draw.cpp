@@ -23,7 +23,7 @@ void Draw::UpdateScreen() {
 
   int numVerts = updateBuffer();
 
-  std::cout << "drawing " << numVerts << " vertices" << std::endl;
+  //std::cout << "drawing " << numVerts << " vertices" << std::endl;
   
   glBindVertexArray(VAOs[Triangles]);
   glDrawArrays(GL_TRIANGLES, 0, numVerts);

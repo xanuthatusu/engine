@@ -14,6 +14,7 @@ enum EventType {KEY_PRESS};
 
 typedef struct {
   EventType type;
+  int key;
   const char* details;
 } Event;
 

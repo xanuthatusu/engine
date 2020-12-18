@@ -1,5 +1,5 @@
 #include <engine/systems/Render.h>
-#include <shape/Shape.h>
+#include <assets/shape/Shape.h>
 
 #include <engine/framework/Framework.h>
 

@@ -14,13 +14,15 @@ namespace Framework {
 
   void Input::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     Input* input = static_cast<Framework*>(glfwGetWindowUserPointer(window))->GetInput();
-    
+
     input->handleMessage(key, scancode, action, mods);
   };
 
   void Input::handleMessage(int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
-      Event testEvent = { KEY_PRESS, "test event action" };
+      std::cout << "Key pressed!\n- key: " << key << "\n- scancode: " << scancode << std::endl;
+
+      Event testEvent = { KEY_PRESS, key, "test event action" };
       inputSystem->handleEvent(&testEvent);
     }
   }

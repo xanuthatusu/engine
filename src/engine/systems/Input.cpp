@@ -9,7 +9,13 @@ const char* Input::Name() {
 }
 
 void Input::handleEvent(Framework::Event* event) {
-  // std::cout << "input handling for event of type " << event->type << " with details: " << event->details << std::endl;
+  std::cout << "input handling for event of type " << event->type << " with details: " << event->details << std::endl;
+  switch (event->key) {
+    case 87:
+      std::cout << "w pressed! Moving shape!" << std::endl;
+      break;
+  }
+
   std::vector<Vertex> vertVect;
   Vertex v = { 0.0f, 0.0f };
   vertVect.push_back(v);

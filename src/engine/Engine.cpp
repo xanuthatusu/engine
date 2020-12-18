@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include <shape/Shape.h>
+#include <assets/shape/Shape.h>
 #include <engine/message/MessageBus.h>
 #include <engine/framework/Framework.h>
 
