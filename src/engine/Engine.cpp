@@ -8,6 +8,8 @@
 #include <engine/message/MessageBus.h>
 #include <engine/framework/Framework.h>
 
+#include <logic/Logic.h>
+
 #include <engine/systems/Console.h>
 #include <engine/systems/Render.h>
 #include <engine/systems/Input.h>
@@ -22,6 +24,7 @@ Engine::Engine() {
 
   msgBus = new MessageBus(systems);
   framework = new Framework::Framework(inputSystem);
+  logic = new Logic();
 
   std::cout << "finished initializing engine\n";
 }

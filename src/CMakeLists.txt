@@ -18,3 +18,6 @@ target_link_libraries(engine input)
 add_subdirectory(engine/message)
 target_link_libraries(engine message)
 target_link_libraries(engine messageBus)
+
+add_subdirectory(logic)
+target_link_libraries(engine logic)
